@@ -18,3 +18,7 @@ class Solution {
         return ans;
     }
 }
+
+
+/*Input: n = 3
+Output: ["((()))","(()())","(())()","()(())","()()()"]*/
