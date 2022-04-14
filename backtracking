@@ -1,0 +1,17 @@
+class Solution {
+    public void sub(int index,int[] nums,List<Integer> append,List<List<Integer>> ans){
+        if(index==nums.length){
+            ans.add(new ArrayList(append));
+            return ;
+        }
+        append.add(nums[index]);
+        sub(index+1,nums,append,ans);
+        append.remove(append.size()-1);
+        sub(index+1,nums,append,ans);
+    }
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> append = new ArrayList<>();
+        sub(0,nums,append,ans);
+        return ans;
+    }
