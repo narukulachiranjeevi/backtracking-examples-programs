@@ -1,0 +1,24 @@
+```
+
+class Solution {
+    TreeNode sea = null;
+    public TreeNode search(TreeNode root,int val){
+        if(root==null) return null;
+        else if(root.val == val){
+            sea = root;
+            return sea;
+        }
+        if(sea!=null){
+            return sea;
+        }
+        search(root.left,val);
+        if(sea!=null) return sea;
+        search(root.right,val);
+        return sea;
+    }
+    public TreeNode searchBST(TreeNode root, int val) {
+        search(root,val);
+        return sea;
+    }
+}
+```
