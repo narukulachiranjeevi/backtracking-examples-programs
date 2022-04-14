@@ -1,0 +1,20 @@
+class Solution {
+    void gen(int target,int index,int[] nums,List<Integer> stack,List<List<Integer>> ans){
+        if(index>=nums.length) return ;
+        if(target==0){
+            ans.add(new ArrayList(stack));
+            return ;
+        }
+        else if(nums[index]<=target){
+            stack.add(nums[index]);
+            gen(target-nums[index],index,nums,stack,ans);
+            stack.remove(stack.size()-1);
+        }
+        gen(target,index+1,nums,stack,ans);
+    }
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        gen(target,0,candidates,new ArrayList(),ans);
+        return ans;
+    }
+}
