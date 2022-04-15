@@ -1,0 +1,50 @@
+class CombinationIterator {
+    List<String> ans = new ArrayList<>();
+    int ptr=0;
+    void combination(int index,int target,int n,String s,String stack,List<String> ans){
+        if(target==0){
+            ans.add(stack);
+            return ;
+        }
+        else if(index>=n) return ;
+        else if(target>=0){
+            combination(index+1,target-1,n,s,(stack+s.charAt(index)),ans);
+        }
+        combination(index+1,target,n,s,stack,ans);
+    }
+    public CombinationIterator(String characters, int n) {
+        combination(0,n,characters.length(),characters,"",ans);
+    }
+    
+    public String next() {
+        ptr++;
+        return ans.get(ptr-1);
+    }
+    
+    public boolean hasNext() {
+        if(ans.size()>ptr) return true;
+        return false;
+    }
+}
+
+
+
+"""" 
+
+Example 1:
+
+Input
+["CombinationIterator", "next", "hasNext", "next", "hasNext", "next", "hasNext"]
+[["abc", 2], [], [], [], [], [], []]
+Output
+[null, "ab", true, "ac", true, "bc", false]
+
+Explanation
+CombinationIterator itr = new CombinationIterator("abc", 2);
+itr.next();    // return "ab"
+itr.hasNext(); // return True
+itr.next();    // return "ac"
+itr.hasNext(); // return True
+itr.next();    // return "bc"
+itr.hasNext(); // return False
+"""
