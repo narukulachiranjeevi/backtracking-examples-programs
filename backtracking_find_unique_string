@@ -1,0 +1,23 @@
+class Solution {
+    int ind = -1;
+    void back(int index,int size,String s,List<String> ans,Map<String,Integer> map){
+        if(s.length()==size){
+            ans.add(s); 
+            if(!map.containsKey(s)) ind = ans.size()-1;
+            return ;
+        }
+        else if(index>size) return ;
+        else if(ind>=0) return;
+        back(index+1,size,s+"0",ans,map);
+        back(index+1,size,s+"1",ans,map);
+    }
+    public String findDifferentBinaryString(String[] nums) {
+        List<String> s = new ArrayList<>();
+        Map<String,Integer> map = new HashMap<>();
+        for(String i:nums){
+            map.put(i,1);
+        }
+        back(0,nums.length,"",s,map);
+        return s.get(ind);
+    }
+}
