@@ -1,0 +1,41 @@
+/* 
+ using combination we can solve this program 
+ index starting from 0-4 becoz we have 5 vowels
+ let assume that 
+ index is array index 
+ arr[0]='a' and arr[1]='e' 
+ arr[2]='i'
+ arr[3]='o'
+ arr[4]='u'
+ in the main function we are calling the rec function with index 0 and count 0 
+ using backtracking 
+ Eg : n = 2
+ 1 --> index - 0-->'a' - count:1
+ 2 --> index - 0 --> 'aa' - count:2 return 'aa'
+ and 
+ using backtracking its call '1'
+ 1 --> index - 1 --> 'a' - count:1  { in index 1 is 'e'}
+ 4 --> index - 1 -->'ae' - count : 2
+ count == n then return 
+ again backtracking 
+ its calles '1' with index 1
+ 1 --> index - 1 --> 'a' - count : 1 { in index 2 is 'i'}
+ 2 --> index - 2 --> 'ai' - count : 2 
+ and so on.....
+ 
+*/
+class Solution {
+    int coun=0;
+    void rec(int index,int count,int n){
+       if(count==n || index>=4){
+           coun++;
+           return;
+       }
+        rec(index,count+1,n);
+        rec(index+1,count,n);
+    }
+    public int countVowelStrings(int n) {
+        rec(0,0,n);
+        return coun;
+    }
+}
